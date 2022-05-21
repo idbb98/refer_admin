@@ -9,8 +9,7 @@ import java.util.List;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 /**
  * <p>
@@ -20,9 +19,8 @@ import lombok.Setter;
  * @author bin
  * @since 2022-05-08
  */
-@Getter
-@Setter
-  @TableName("sys_menu")
+@Data
+@TableName("sys_menu")
 @ApiModel(value = "Menu对象", description = "")
 public class Menu implements Serializable {
 

@@ -85,6 +85,14 @@ public class UserController {
         return Result.success(userService.list());
     }
 
+    @GetMapping("/role/{role}")
+    public Result findUsersByRole(@PathVariable String role) {
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("role",role);
+        List<User> list = userService.list(queryWrapper);
+        return Result.success(list);
+    }
+
     @GetMapping("/{id}")
     public Result findOne(@PathVariable Integer id) {
         return Result.success(userService.getById(id));
@@ -103,22 +111,22 @@ public class UserController {
                                @RequestParam(defaultValue = "") String username,
                                @RequestParam(defaultValue = "") String email,
                                @RequestParam(defaultValue = "") String address) {
-        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
-        queryWrapper.orderByDesc("id");
-        if (!"".equals(username)) {
-            queryWrapper.like("username", username);
-        }
-        if (!"".equals(email)) {
-            queryWrapper.like("email", email);
-        }
-        if (!"".equals(address)) {
-            queryWrapper.like("address", address);
-        }
+//        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+//        queryWrapper.orderByDesc("id");
+//        if (!"".equals(username)) {
+//            queryWrapper.like("username", username);
+//        }
+//        if (!"".equals(email)) {
+//            queryWrapper.like("email", email);
+//        }
+//        if (!"".equals(address)) {
+//            queryWrapper.like("address", address);
+//        }
         //获取当前登录用户信息
 //        User currentUser = TokenUtils.getCurrentUser();
 //        System.out.println("当前用户信息================"+currentUser);
 
-        return Result.success(userService.page(new Page<>(pageNum, pageSize), queryWrapper));
+        return Result.success(userService.findPage(new Page<>(pageNum, pageSize), username, email, address));
     }
 
     //导出excel接口

@@ -3,6 +3,7 @@ package com.chase.springboot.service.impl;
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.log.Log;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.chase.springboot.common.Constants;
 import com.chase.springboot.controller.dto.UserDTO;
 import com.chase.springboot.entity.Menu;
@@ -42,7 +43,11 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     private RoleMenuMapper roleMenuMapper;
 
     @Resource
+    private UserMapper userMapper;
+
+    @Resource
     private IMenuService menuService;
+
 
     @Override
     public UserDTO login(UserDTO userDTO) {
@@ -74,6 +79,11 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
             throw new ServiceException(Constants.CODE_600, "用户名已存在");
         }
         return one;
+    }
+
+    @Override
+    public Page<User> findPage(Page<User> page, String username, String email, String address) {
+        return userMapper.findPage(page, username, email, address);
     }
 
     private User getUserInfo(UserDTO userDTO) {

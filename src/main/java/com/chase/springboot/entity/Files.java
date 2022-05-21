@@ -6,8 +6,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 /**
  * <p>
@@ -17,8 +16,7 @@ import lombok.Setter;
  * @author bin
  * @since 2022-05-05
  */
-@Getter
-@Setter
+@Data
 @TableName("sys_file")
 @ApiModel(value = "File对象", description = "")
 public class Files implements Serializable {

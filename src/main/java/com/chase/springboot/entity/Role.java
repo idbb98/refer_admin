@@ -6,8 +6,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 /**
  * <p>
@@ -17,10 +16,9 @@ import lombok.Setter;
  * @author bin
  * @since 2022-05-08
  */
-@Getter
-@Setter
-  @TableName("sys_role")
+@TableName("sys_role")
 @ApiModel(value = "Role对象", description = "")
+@Data
 public class Role implements Serializable {
 
     private static final long serialVersionUID = 1L;
